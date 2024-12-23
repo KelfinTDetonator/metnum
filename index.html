@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>🦜 Polyglot - Piratical PyScript</title>
+      <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    
+    <!-- <input class="w-[500px] border border-gray-300 rounded-md p-2" type="text" id="english" placeholder="Masukkan Luas Areal (ha) yang ingin diprediksi..." />
+    <button py-click="translate_english" class="bg-blue-500 text-white px-4 py-2 rounded-md">Prediksi</button> -->
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+      <h1 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+        Prediksi Produksi Padi di Indonesia 🇮🇩
+      </h1>
+      
+      <!-- Input untuk luas area -->
+      <div class="mb-4">
+          <label for="area" class="block text-sm font-medium text-gray-700">
+              Masukkan Luas Area (ha)
+          </label>
+          <input type="number" id="area" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Masukkan luas area (ha)" />
+      </div>
+      
+      <!-- Tombol hitung -->
+      <button id="calculate-btn" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Hitung Hasil Produksi
+      </button>
+      
+      <!-- Hasil -->
+      <p id="result" class="mt-4 text-lg font-medium text-gray-800">
+          Hasil Produksi Padi = <span id="output">-</span> ton
+      </p>
+  </div>
+    <script type="py" src="./main.py" config="./pyscript.json"></script>
+  </body>
+</html>
