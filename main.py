@@ -22,26 +22,23 @@ def moving_average_combined(data1, data2, window_size):
     if window_size <= 0 or window_size > len(data1):
         raise ValueError("Ukuran window tidak valid")
     
-    combined_data = [{'x': x, 'y': y} for x, y in zip(data1, data2)]
     moving_averages = []
 
-    for i in range(len(combined_data) - window_size + 1):
-        window = combined_data[i:i + window_size]
-        avg_x = sum(point['x'] for point in window) / window_size
-        avg_y = sum(point['y'] for point in window) / window_size
+    for i in range(len(data1) - window_size + 1):
+        avg_x = sum(data1[i:i + window_size]) / window_size
+        avg_y = sum(data2[i:i + window_size]) / window_size
         moving_averages.append({'x': round(avg_x, 2), 'y': round(avg_y, 2)})
 
     return moving_averages
 
-# Contoh penggunaan
 dataLuasAreal = [11377934.44, 10677887.15, 10657274.96, 10411801.22, 10452672, 10213705.17, 10046457.29]
-dataHasilProduksi = [59200533.72, 54604033.34, 54604491.15, 54415294.22, 54748977, 53980993.2, 52659237.12]
+dataHasilProduksi = [59200533.72, 54604033.34, 54649202.24, 54415294.22, 54748977, 53980993.19, 52659237.12]
 window_size = 3
 
-dataset = moving_average_combined(dataLuasAreal, dataHasilProduksi, window_size)
+mvDataset = moving_average_combined(dataLuasAreal, dataHasilProduksi, window_size)
 
 # Output hasil
-print(dataset)
+print(mvDataset)
 
 def linear_regression(data):
     n = len(data)
@@ -61,16 +58,8 @@ def linear_regression(data):
     
     return {'slope': round(m, 2), 'intercept': rounded_b}
 
-# dataset = [
-#     {'x': 10904365.52, 'y': 56151256.43},
-#     {'x': 10582321.11, 'y': 54556176.6},
-#     {'x': 10507249.39, 'y': 54604491.15},
-#     {'x': 10359392.8, 'y': 54381754.8},
-#     {'x': 10237611.49, 'y': 53796402.44}
-# ]
-
-result = linear_regression(dataset)
-
+result = linear_regression(mvDataset)
+print(result)
 def predict(x):
     return result['slope'] * x + result['intercept']
 
@@ -86,7 +75,7 @@ predict_dataset = [
 ]
 
 regression_data = [round(predict(x), 2) for x in predict_dataset]
-
+print(regression_data)
 def create_forward_difference_table(data):
     n = len(data)
     table = [[0] * n for _ in range(n)]
@@ -120,7 +109,7 @@ def newton_gregory_forward_interpolation(data, x_target):
 
 # x_target = [11377934.44, 10677887.15, 10657274.96, 10411801.22, 10452672, 10213705.17, 10046457.29]
 # x_target = 0
-dataset = [
+regresi_dataset = [
     {'x': 10200000, 'y': 53646270.84},
     {'x': 10600000, 'y': 54977497.15},
     {'x': 11000000, 'y': 56308723.46},
@@ -134,7 +123,7 @@ def calculate_production(event):
     area = document.getElementById("area").value
     if area:
         area = float(area)
-        result = newton_gregory_forward_interpolation(dataset, area)
+        result = newton_gregory_forward_interpolation(regresi_dataset, area)
         # Menampilkan hasil produksi
         document.getElementById("output").innerText = f"{result:,.2f}"
     else:
