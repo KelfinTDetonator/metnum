@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>🦜 Polyglot - Piratical PyScript</title>
+      <title>Prediksi Padi</title>
       <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
       <script src="https://cdn.tailwindcss.com"></script>
       <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
@@ -18,13 +18,26 @@
       </h1>
       
       <!-- Input untuk luas area -->
-      <div class="mb-4">
+      <!-- <div class="mb-4">
           <label for="area" class="block text-sm font-medium text-gray-700">
               Masukkan Luas Area (ha)
           </label>
           <input type="number" id="area" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Masukkan luas area (ha)" />
+      </div> -->
+      <div class="mb-4">
+        <label for="area" class="block text-sm/6 font-medium text-gray-900">Masukkan Luas Area</label>
+        <div class="mt-2">
+          <div class="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+
+            <input type="text" name="price" id="area" class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="0.00">
+            <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+              <select id="currency" name="currency" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pl-3 pr-7 text-base text-gray-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                <option>ha</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
-      
       <!-- Tombol hitung -->
       <button id="calculate-btn" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
           Hitung Hasil Produksi
@@ -32,7 +45,7 @@
       
       <!-- Hasil -->
       <p id="result" class="mt-4 text-lg font-medium text-gray-800">
-          Hasil Produksi Padi = <span id="output">-</span> ton
+          Hasil Prediksi Produksi Padi = <span id="output">-</span> ton
       </p>
   </div>
     <script type="py" src="./main.py" config="./pyscript.json"></script>

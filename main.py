@@ -4,6 +4,45 @@ import arrr
 from pyscript import document
 from pyodide.ffi.wrappers import add_event_listener
 
+def moving_average_combined(data1, data2, window_size):
+    """
+    Menghitung moving average dari dua dataset yang digabungkan.
+    
+    Parameters:
+        data1 (list): Dataset pertama (misalnya, data luas areal).
+        data2 (list): Dataset kedua (misalnya, data hasil produksi).
+        window_size (int): Ukuran jendela untuk rata-rata.
+    
+    Returns:
+        list: Array of dictionaries dengan average dari dataset gabungan.
+    """
+    if len(data1) != len(data2):
+        raise ValueError("Data1 dan Data2 harus memiliki panjang yang sama")
+    
+    if window_size <= 0 or window_size > len(data1):
+        raise ValueError("Ukuran window tidak valid")
+    
+    combined_data = [{'x': x, 'y': y} for x, y in zip(data1, data2)]
+    moving_averages = []
+
+    for i in range(len(combined_data) - window_size + 1):
+        window = combined_data[i:i + window_size]
+        avg_x = sum(point['x'] for point in window) / window_size
+        avg_y = sum(point['y'] for point in window) / window_size
+        moving_averages.append({'x': round(avg_x, 2), 'y': round(avg_y, 2)})
+
+    return moving_averages
+
+# Contoh penggunaan
+dataLuasAreal = [11377934.44, 10677887.15, 10657274.96, 10411801.22, 10452672, 10213705.17, 10046457.29]
+dataHasilProduksi = [59200533.72, 54604033.34, 54604491.15, 54415294.22, 54748977, 53980993.2, 52659237.12]
+window_size = 3
+
+dataset = moving_average_combined(dataLuasAreal, dataHasilProduksi, window_size)
+
+# Output hasil
+print(dataset)
+
 def linear_regression(data):
     n = len(data)
 
@@ -22,13 +61,13 @@ def linear_regression(data):
     
     return {'slope': round(m, 2), 'intercept': rounded_b}
 
-dataset = [
-    {'x': 10904365.52, 'y': 56151256.43},
-    {'x': 10582321.11, 'y': 54556176.6},
-    {'x': 10507249.39, 'y': 54604491.15},
-    {'x': 10359392.8, 'y': 54381754.8},
-    {'x': 10237611.49, 'y': 53796402.44}
-]
+# dataset = [
+#     {'x': 10904365.52, 'y': 56151256.43},
+#     {'x': 10582321.11, 'y': 54556176.6},
+#     {'x': 10507249.39, 'y': 54604491.15},
+#     {'x': 10359392.8, 'y': 54381754.8},
+#     {'x': 10237611.49, 'y': 53796402.44}
+# ]
 
 result = linear_regression(dataset)
 
